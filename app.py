@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-from tensorflow import keras
+import tensorflow as tf
 import joblib
 
 # ----------------------------
@@ -9,7 +9,7 @@ import joblib
 # ----------------------------
 @st.cache_resource
 def load_artifacts():
-    model = keras.models.load_model("model.h5")
+    model = tf.keras.models.load_model("model.h5")
     onehot_encoder_geo = joblib.load("onehot_encoder_geo.pkl")
     scaler = joblib.load("scaler.pkl")
     return model, onehot_encoder_geo, scaler
@@ -73,6 +73,11 @@ if st.button("Predict Churn"):
 
         # ----- Predict -----
         prediction_prob = model.predict(final_scaled)[0][0]
+
+        # ----- DEBUG -----
+        st.write("DEBUG INPUT:", final_input)
+        st.write("DEBUG SCALED INPUT:", final_scaled)
+
         prediction = 1 if prediction_prob > 0.5 else 0
 
         # ----- Display -----
