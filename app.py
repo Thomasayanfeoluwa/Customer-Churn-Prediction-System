@@ -71,13 +71,12 @@ if st.button("Predict Churn"):
         # ----- Scale -----
         final_scaled = scaler.transform(final_input)
 
-        # ----- Predict -----
-        prediction_prob = model.predict(final_scaled)[0][0]
-
-        # ----- DEBUG -----
+               # ----- DEBUG -----
         st.write("DEBUG INPUT:", final_input)
         st.write("DEBUG SCALED INPUT:", final_scaled)
 
+        # ----- Predict -----
+        prediction_prob = model.predict(final_scaled)[0][0]
         prediction = 1 if prediction_prob > 0.5 else 0
 
         # ----- Display -----
