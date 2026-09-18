@@ -71,7 +71,7 @@ if st.button("Predict Churn"):
         # ----- Scale -----
         final_scaled = scaler.transform(final_input)
 
-               # ----- DEBUG -----
+        # ----- DEBUG -----
         st.write("DEBUG INPUT:", final_input)
         st.write("DEBUG SCALED INPUT:", final_scaled)
 
